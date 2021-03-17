@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {OrganizationPage} from "./components/pages/OrganizationPage";
+import {ManagersPage} from "./components/pages/ManagersPage";
+import NavigationBar from "./components/navigation/NavigationBar";
+import {HomePage} from "./components/pages/HomePage";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <BrowserRouter>
+            <NavigationBar />
+            <Switch>
+                <Route exact path={'/organizations'} component={OrganizationPage} />
+                <Route exact path={'/managers'} component={ManagersPage} />
+                <Route path={'/'} component={HomePage} />
+            </Switch>
+        </BrowserRouter>
     </div>
   );
 }
